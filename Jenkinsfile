@@ -51,7 +51,6 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh 'az acr login --name acrmyshadowprepod'                                
                         GIT_COMMIT_ID = sh (
                            script: 'git log -1 --pretty=%H',
                            returnStdout: true
@@ -62,7 +61,7 @@ pipeline {
                         ).trim()
                         echo "Git commit id: ${GIT_COMMIT_ID}"
                         IMAGETAG="${GIT_COMMIT_ID}-${TIMESTAMP}"
-                        sh "docker build -t nodejs-hello:${IMAGETAG}"
+                        sh "docker build -t scratch-hello:${IMAGETAG}"
                         /*
                         sh "docker build -t acrmyshadowprepod.azurecr.io/myshadowbase:prod-${IMAGETAG} ."
                         sh "docker push acrmyshadowprepod.azurecr.io/myshadowbase:prod-${IMAGETAG}"
