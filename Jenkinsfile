@@ -61,7 +61,7 @@ pipeline {
                         ).trim()
                         echo "Git commit id: ${GIT_COMMIT_ID}"
                         IMAGETAG="${GIT_COMMIT_ID}-${TIMESTAMP}"
-                        sh "docker build -t scratch-hello:${IMAGETAG}"
+                        sh "docker build -t scratch-hello:${IMAGETAG} ."
                         /*
                         sh "docker build -t acrmyshadowprepod.azurecr.io/myshadowbase:prod-${IMAGETAG} ."
                         sh "docker push acrmyshadowprepod.azurecr.io/myshadowbase:prod-${IMAGETAG}"
