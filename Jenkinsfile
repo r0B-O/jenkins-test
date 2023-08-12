@@ -14,7 +14,9 @@ def cleanUp()
 }
 
 pipeline {
-    agent docker-buildx  
+    agent {
+        label 'docker-buildx'
+    }
     stages {
         stage("Checkout Source Code Branch") {
             environment {
