@@ -71,7 +71,7 @@ spec:
                            returnStdout: true
                         ).trim()
                         IMAGETAG="${TIMESTAMP}"
-                         withCredentials([usernameColonPassword(credentialsId: 'docker-creds', usernameVariable: 'docker-user', passwordVariable: 'docker-password')]) {
+                         withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'docker-user', passwordVariable: 'docker-password')]) {
                             sh """
                             docker login -u ${docker-username} -p ${docker-password}
                             wget https://github.com/docker-library/hello-world/blob/3fb6ebca4163bf5b9cc496ac3e8f11cb1e754aee/amd64/hello-world/hello
