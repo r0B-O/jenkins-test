@@ -80,6 +80,7 @@ spec:
                         ).trim()
                         IMAGETAG="${TIMESTAMP}"
                         sh """
+                        wget https://github.com/docker-library/hello-world/blob/3fb6ebca4163bf5b9cc496ac3e8f11cb1e754aee/amd64/hello-world/hello
                         docker buildx build -t scratch-hello:${IMAGETAG} .
                         """
                         /*
