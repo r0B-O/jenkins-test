@@ -9,7 +9,34 @@ def cleanUp()
 
 pipeline {
     agent {
-        label 'docker-buildx'
+        kubernetes {
+            defaultContainer 'docker-buildx'
+            yaml '''
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: buildx-pod
+  name: buildx-pod
+spec:
+  containers:
+  - image: docker:latest
+    name: docker-buildx
+    command:
+      - "sh"
+      - "-c"
+      - |
+        mkdir ~/.docker
+        mkdir ~/.docker/cli-plugins && cd ~/.docker/cli-plugins 
+        wget https://github.com/docker/buildx/releases/download/v0.5.1/buildx-v0.5.1.linux-amd64
+        mv ./buildx-v0.5.1.linux-amd64 docker-buildx
+        chmod +x ./docker-buildx
+        docker buildx create --use --name k8s node-amd64 --driver kubernetes --driver-opt  image=moby/buildkit:master
+        while true; do sleep 3600; done;
+  restartPolicy: Never
+  serviceAccount: buildx-sa
+'''
+        }
     }
     stages {
         stage("Checkout Source Code Branch") {
