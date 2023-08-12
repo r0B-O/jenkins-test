@@ -26,6 +26,8 @@ spec:
       - "sh"
       - "-c"
       - |
+        mkdir ~/.docker
+        mkdir ~/.docker/cli-plugins && cd ~/.docker/cli-plugins 
         wget https://github.com/docker/buildx/releases/download/v0.5.1/buildx-v0.5.1.linux-amd64
         mv ./buildx-v0.5.1.linux-amd64 docker-buildx
         chmod +x ./docker-buildx
@@ -78,13 +80,6 @@ spec:
                         ).trim()
                         IMAGETAG="${TIMESTAMP}"
                         sh """
-                        wget https://github.com/docker-library/hello-world/blob/3fb6ebca4163bf5b9cc496ac3e8f11cb1e754aee/amd64/hello-world/hello
-                        mkdir ~/.docker
-                        mkdir ~/.docker/cli-plugins && cd ~/.docker/cli-plugins                        
-                        wget https://github.com/docker/buildx/releases/download/v0.11.2/buildx-v0.11.2.linux-amd64
-                        mv ./buildx-v0.11.2.linux-amd64 docker-buildx
-                        chmod +x ./docker-buildx
-                        # docker buildx create --use --name k8s node-amd64 --driver kubernetes --driver-opt  image=moby/buildkit:master
                         docker buildx build -t scratch-hello:${IMAGETAG} .
                         """
                         /*
