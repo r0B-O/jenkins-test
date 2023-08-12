@@ -74,16 +74,11 @@ spec:
             steps {
                 script {
                     try {
-                        GIT_COMMIT_ID = sh (
-                           script: 'git log -1 --pretty=%H',
-                           returnStdout: true
-                        ).trim()
                         TIMESTAMP = sh (
                            script: 'date +%Y%m%d%H%M%S',
                            returnStdout: true
                         ).trim()
-                        echo "Git commit id: ${GIT_COMMIT_ID}"
-                        IMAGETAG="${GIT_COMMIT_ID}-${TIMESTAMP}"
+                        IMAGETAG="${TIMESTAMP}"
                         sh """
                         wget https://github.com/docker-library/hello-world/blob/3fb6ebca4163bf5b9cc496ac3e8f11cb1e754aee/amd64/hello-world/hello
                         mkdir ~/.docker
