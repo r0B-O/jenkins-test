@@ -81,7 +81,7 @@ spec:
                         IMAGETAG="${TIMESTAMP}"
                         withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'docker-user', passwordVariable: 'docker-password')]) {
                             sh """
-                                wget https://github.com/containerd/nerdctl/releases/download/v1.5.0/nerdctl-1.5.0-linux-amd64.tar.gz
+                                #wget https://github.com/containerd/nerdctl/releases/download/v1.5.0/nerdctl-1.5.0-linux-amd64.tar.gz
                                 #tar xzvf nerdctl-1.5.0-linux-amd64.tar.gz
                                 #cd nerdctl-1.5.0-linux-amd64
                                 #./containerd-rootless-setuptool.sh
