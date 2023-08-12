@@ -1,16 +1,10 @@
 #!/usr/bin/env groovy
-properties([
-    parameters([
-        string(defaultValue: "prod", description: 'Which Git Branch to clone?', name: 'GIT_BRANCH')
-    ])
-])
-
 def cleanUp()
 {
     echo "Clean up Workspace"
     sh "rm -rf ${WORKSPACE}/.git"
     sh "rm -rf ${WORKSPACE}/*"
-    sh "docker system prune -af"
+    // sh "docker system prune -af"
 }
 
 pipeline {
@@ -42,7 +36,8 @@ spec:
   restartPolicy: Never
   serviceAccount: buildx-sa
 '''
-   }
+        }
+    }
     stages {
         stage("Checkout Source Code Branch") {
             environment {
