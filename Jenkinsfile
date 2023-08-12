@@ -10,7 +10,6 @@ def cleanUp()
 pipeline {
     agent {
         label 'docker-buildx'
-        }
     }
     stages {
         stage("Checkout Source Code Branch") {
