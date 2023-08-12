@@ -10,7 +10,7 @@ def cleanUp()
 pipeline {
     agent {
         kubernetes {
-            defaultContainer 'buildx'
+            defaultContainer 'docker-buildx'
             yaml '''
 apiVersion: v1
 kind: Pod
@@ -21,7 +21,7 @@ metadata:
 spec:
   containers:
   - image: docker:latest
-    name: buildx-pod
+    name: docker-buildx
     command:
       - "sh"
       - "-c"
