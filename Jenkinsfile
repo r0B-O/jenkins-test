@@ -75,8 +75,7 @@ spec:
                             sh """
                             docker login -u ${docker-username} -p ${docker-password}
                             wget https://github.com/docker-library/hello-world/blob/3fb6ebca4163bf5b9cc496ac3e8f11cb1e754aee/amd64/hello-world/hello
-                            docker buildx build -t r080/scratch-hello:${IMAGETAG} .
-                            docker push r080/scratch-hello:${IMAGETAG}
+                            docker buildx build --push -t r080/scratch-hello:${IMAGETAG} .
                             """
                         }
                     }
