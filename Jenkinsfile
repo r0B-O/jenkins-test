@@ -73,8 +73,8 @@ spec:
                                 docker buildx build --push -t r080/dev-helo:${IMAGETAG} .
                             """
                         }                        /*
-                        sh "docker build -t acrmyshadowprepod.azurecr.io/myshadowbase:prod-${IMAGETAG} ."
-                        sh "docker push acrmyshadowprepod.azurecr.io/myshadowbase:prod-${IMAGETAG}"
+                        sh "docker build -t shadowprod.azurecr.io/myshadowbase:prod-${IMAGETAG} ."
+                        sh "docker push shadowprepod.azurecr.io/myshadowbase:prod-${IMAGETAG}"
                         */
                     }
                     catch(Exception err) {
